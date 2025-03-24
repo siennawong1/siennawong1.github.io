@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid of Shapes with Click Effect</title>
+    <style>
+        body {
+            background-color: #DACDCB;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: arial;
+        }
+
+        .container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    height: 100vh; 
+}
+
+.centered-gif {
+    width: 130px; 
+    height: auto;
+    margin-bottom: 100px; 
+}
+
+        /* Outer grid container  */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            grid-template-rows: repeat(2, 1fr);    
+            width: 400px;
+            height: 400px;
+            border: 3px solid white; 
+            box-sizing: border-box;
+        }
+
+        /* General shape styling */
+        .shape {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.2s ease, background-color 0.2s ease; 
+        }
+
+        /* Clickable Square */
+        .square {
+            background-color: #ff85d0;
+            width: 100%;
+            height: 100%;
+            cursor: url('../homepage/imageshp/pinkpointer.png'), auto;
+        }
+
+        .square:hover {
+            background-color: orange;
+        }
+
+        .square:active {
+            transform: scale(0.95); 
+            background-color: greenyellow; 
+        }
+
+        /* Circle with fading edges */
+        .circle {
+            background: radial-gradient(circle, orange 20%, transparent 80%); 
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+        }
+
+        .circle:hover {
+            background-color: greenyellow;
+        }
+
+        .circle:active {
+            transform: scale(0.8); 
+            background-color: greenyellow; 
+        }
+
+        
+        .circle {
+            cursor: zoom-in;
+        }
+
+        /* Triangle effect */
+        .triangle-container {
+            width: 100%;
+            height: 100%;
+            perspective: 1000px; 
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 200px solid greenyellow;
+            transition: transform 0.5s ease-in-out; 
+            transform-style: preserve-3d; 
+        }
+
+        .triangle:hover {
+            border-bottom-color: #ef3eab;
+        }
+
+        .triangle {
+            cursor: crosshair;
+        }
+
+        .triangle:active {
+            transform: rotateY(360deg); 
+            border-bottom-color: orange; 
+        }
+
+        /* White-bordered square  */
+        .text-box {
+            display: flex;
+            justify-content: flex-end; 
+            align-items: flex-end; 
+            padding: 10px;
+            text-align: left;
+            font-size: 12px;
+            color: black;
+            border-top: 3px solid white;
+            border-left: 3px solid white;
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+        }
+
+        .text-box {
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <!-- Container for GIF and Grid -->
+    <div class="container">
+       
+        <img src="../week2/images2/windows.gif" alt="Animated GIF" class="centered-gif">
+
+        <!-- Grid Container -->
+        <div class="grid-container">
+            <a href="../homepage/homepage.html" class="shape"> 
+                <div class="square"></div>
+            </a>
+
+            <div class="shape circle"></div>  
+            
+            <!-- Triangle with flip effect -->
+            <div class="shape triangle-container">
+                <div class="triangle"></div>
+            </div>
+
+            <div class="text-box">To access the workbook, please click on the orange shape!</div> 
+        </div>
+    </div>
+</body>
+</html>
+
+
