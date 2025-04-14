@@ -1,0 +1,324 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+
+  <script src="libraries/p5.min.js"></script>
+  <script src="libraries/p5.sound.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      overflow-y: auto;
+    }
+
+    iframe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      z-index: -1;
+    }
+
+    .gif-container {
+      position: absolute;
+      top: 60%;
+      left: 70%;
+      transform: translate(-50%, -50%);
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 40px;
+      z-index: 2;
+    }
+
+    .gif-container img {
+      width: 500px;
+      height: auto;
+    }
+
+    .return-link {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 10;
+      font-size: 14px;
+      color: black;
+      text-align: center;
+    }
+
+    .return-link a {
+      width: 20px;
+      height: 20px;
+      background-color: black;
+      border-radius: 50%;
+      display: block;
+      text-indent: -9999px;
+      margin-bottom: 8px;
+    }
+
+    .content-below {
+      margin-top: 100vh;
+      padding: 40px;
+      background-color: #ffffff;
+    }
+
+    .code-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 400px);
+      grid-gap: 40px;
+      margin-left: 600px; 
+    }
+
+    .code-box {
+      background: white;
+      padding: 20px;
+      max-height: 600px;
+      overflow-y: auto;
+      font-family: monospace;
+      font-size: 12px;
+      white-space: pre;
+     
+    }
+
+    
+
+    .text-box {
+      position: fixed;
+      bottom: 100px;  
+      left: 20px;   
+      background-color: #3EB489;
+      color: white;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      z-index: 10;
+      max-width: 400px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  
+  <div class="gif-container">
+    <img src="./imagesw6p/w6greendot.gif" alt="gif1">
+    <img src="./imagesw6p/w6process.gif" alt="gif2">
+    <img src="./imagesw6p/w6research.gif" alt="gif3">
+    <img src="./imagesw6p/w6workshop.gif" alt="gif4">
+  </div>
+
+  
+  <div class="return-link">
+    <a href="../week6/week6.html" title="Return">Return</a>
+    <span>return</span>
+  </div>
+
+  
+  <iframe src="../p5-experiments/week6process/index.html">
+    Your browser does not support iframes.
+  </iframe>
+
+  
+  <div class="content-below">
+    <div class="code-grid">
+      
+      <div class="code-box">
+let mic;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  textFont('Arial');
+  textSize(1500);
+  fill('green');
+
+  mic = new p5.AudioIn();
+  mic.start();
+}
+
+function draw() {
+  background(255);
+  fill('green');
+  textAlign(LEFT, BOTTOM); 
+  textSize(1500);
+  text('w', -200, height - 10); 
+  textSize(300);
+  textAlign(CENTER, CENTER);
+  text('6', width / 2, height / 2);
+
+  let volume = mic.getLevel();
+  let amplified = constrain(volume * 5, 0, 1);
+  let circleSize = map(amplified, 0, 1, 50, height);
+
+  fill('green');
+  noStroke();
+  circle(width - 700, height - 425, circleSize);
+
+  print("volume", volume);
+      </div>
+
+      
+      <div class="code-box">
+let mic;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  textFont('Arial');
+  noStroke();
+
+  mic = new p5.AudioIn();
+  mic.start();
+}
+
+function draw() {
+  background(255);
+
+  let vol = mic.getLevel();
+  let amplifiedVol = vol * 4;
+  let threshold = 0.05;
+
+  if (amplifiedVol < threshold) {
+    amplifiedVol = 0;
+  } else {
+    amplifiedVol = constrain(map(amplifiedVol, threshold, 1, 0, 1), 0, 1);
+  }
+
+  let darkMintGreen = color('#3EB489');
+  let white = color(255);
+  let pColor = lerpColor(darkMintGreen, white, amplifiedVol);
+  fill(pColor);
+
+  let xPos = map(amplifiedVol, 0, 1, 0, width - 200);
+  textSize(305);
+  textAlign(LEFT, TOP);
+  text('P', xPos, 0);
+
+  fill('#3EB489');
+  textSize(50);
+  text('process', 20, 250);
+
+  textSize(12);
+  text('Please say ahhh and make some \nnoise to see the end result...', 20, 310);
+      </div>
+
+      
+      <div class="code-box">
+let mic;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  textFont('Arial');
+  noStroke();
+
+  mic = new p5.AudioIn();
+  mic.start();
+}
+
+function draw() {
+  background(255);
+  let vol = mic.getLevel();
+  let amplifiedVol = constrain(vol * 10, 0, 2);
+  let threshold = 0.5;
+
+  let r = map(amplifiedVol, 0, 1, 255, 0);
+  let g = map(amplifiedVol, 0, 1, 165, 255);
+  fill(r, g, 0);
+
+  if (amplifiedVol > threshold) {
+    textSize(30);
+    for (let i = 0; i < 50; i++) {
+      let x = random(width);
+      let y = random(height);
+      text('R', x, y);
+    }
+  } else {
+    let rSize = map(amplifiedVol, 0, 1, 300, 220);
+    textSize(rSize);
+    textAlign(LEFT, TOP);
+    text('R', 0, 0);
+  }
+
+  fill(255, 165, 0);
+  textSize(50);
+  text('research', 20, 250);
+
+  textSize(12);
+  text('Please click or clap or make some \nnoise...', 20, 310);
+      </div>
+
+      <!-- Box 4 -->
+      <div class="code-box">
+let mic;
+let angleOffsets = [];
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  textFont('Arial');
+  noStroke();
+
+  mic = new p5.AudioIn();
+  mic.start();
+
+  for (let i = 0; i < 10; i++) {
+    angleOffsets.push(random(TWO_PI));
+  }
+}
+
+function draw() {
+  background(255);
+  let vol = mic.getLevel();
+  let amplifiedVol = constrain(vol * 10, 0, 2);
+  let threshold = 0.2;
+
+  fill(0, 255, 0);
+
+  if (amplifiedVol > threshold) {
+    push();
+    translate(130, 130);
+    rotate(frameCount * 0.05);
+    textSize(265);
+    textAlign(CENTER, CENTER);
+    text('W', 0, 0);
+    pop();
+
+    textSize(30);
+    for (let i = 0; i < 10; i++) {
+      let x = 100;
+      let y = 300 + i * 40;
+      push();
+      translate(x, y);
+      rotate(frameCount * 0.05 + angleOffsets[i]);
+      textAlign(CENTER, CENTER);
+      text('W', 0, 0);
+      pop();
+    }
+  } else {
+    textSize(265);
+    textAlign(LEFT, TOP);
+    text('W', 0, 0);
+  }
+
+  fill(0, 255, 0);
+  textSize(50);
+  text('workshop', 20, 230);
+  textSize(12);
+  text('Please say ahhh and make some noise...', 20, 290);
+      </div>
+    </div>
+  </div>
+
+  <div class="text-box">
+    For each title letter of my week 6 workbook I experimented with sound, using the original code from the sound circle we had learnt in the workshop
+    and adding different effects.
+  </div>
+
+</body>
+</html>
