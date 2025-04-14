@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <!-- Monofett Font Link -->
+    <link href='https://fonts.googleapis.com/css?family=Nabla' rel='stylesheet'>
+    <style>
+        /* Set body background to a soft color */
+        body {
+            background: #DACDCB; /* Soft beige background for the page */
+            color: black; /* Default text color */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: white;
+            display: flex;
+            justify-content: flex-start; /* Align items to the left */
+            padding: 20px 30px;
+            align-items: center;
+        }
+
+        /* Group the navigation links closer together */
+        .nav-links {
+            display: flex;
+            gap: 10px; /* Adjust spacing between links */
+        }
+
+        /* Apply custom cursor to navbar links */
+        .navbar a {
+            color: black;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: url('../homepage/imageshp/pinkpointer.png'), auto;
+        }
+
+        /* Hover effect for navbar links */
+        .navbar a:hover {
+            color: white;
+            background-color: orange;
+        }
+
+        /* Specific hover effect for "Start again" link */
+        .navbar a.right:hover {
+            background-color: greenyellow; /* Green background on hover */
+            color: white; /* Change text color to white */
+        }
+
+        .header {
+    padding: 150px 20px 20px 20px; /* Increased top padding */
+    text-align: center;
+    color: black;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative; 
+    cursor: url('../homepage/imageshp/574280.png'), auto; 
+}
+
+        /* Removed gradient background */
+        .header:hover {
+            color: white; /* Ensure the text turns white when hovered */
+        }
+
+        /* Fading orange circle behind the header text */
+        .header::before {
+            content: ''; 
+            position: absolute;
+            top: 50%;
+            left: 0; 
+            transform: translateY(-50%); 
+            width: 800px; 
+            height: 800px; 
+            background: radial-gradient(circle, rgba(255, 165, 0, 1) 10%, rgba(255, 165, 0, 0) 60%); /* Initial Orange Circle */
+            border-radius: 50%; 
+            z-index: -1; 
+        }
+
+        /* Green-yellow circle */
+        .green-yellow-circle {
+            position: absolute; 
+            top: 50%;
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            width: 800px;
+            height: 300px;
+            background: radial-gradient(circle, rgb(144, 249, 16) 10%, rgba(255, 255, 0, 0) 60%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        /* Apply Monofett font to the header's h1 */
+        .header h1 {
+            margin: 0;
+            font-size: 80px;
+            font-weight: bold;
+            font-family: 'Nabla', sans-serif; /* Apply Monofett font */
+        }
+
+        .header p {
+            font-size: 1.2em;
+            font-weight: lighter;
+        }
+
+        /* Weeks bar styling */
+        .weeks-bar {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 40px 0;
+        }
+
+        .weeks-bar a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            cursor: url('../homepage/imageshp/pencursor.png'), auto; /* Custom cursor */
+        }
+
+        /* Hover effect for Week links */
+        .weeks-bar a:hover {
+            color: black;
+            background-color: white;
+        }
+
+        /* Main content styling */
+        .main {
+            padding: 20px;
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+    padding: 0; /* Remove padding to eliminate space */
+    margin: 0;  /* Remove any margin */
+    text-align: center;
+    background: white;
+}
+
+.footer img {
+    margin: 0; /* Remove any margin around the image */
+    padding: 0; /* Remove padding around the image */
+    display: block; /* Ensure it is displayed as a block-level element, removing any unwanted spacing */
+    width: 100%; /* Optional: Adjust the image width to ensure it fills the footer if needed */
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div class="nav-links">
+            <a href="/index.html" class="right">Start again</a>
+            <a href="../homepage/homepage.html">Homepage</a>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Interactive Media Workbook</h1>
+        <img src="../week2/images2/computergif.gif" alt="Workshop Animation" class="gif-style" />
+    </div>
+
+    <!-- Green-Yellow Circle -->
+    <div class="green-yellow-circle"></div>
+
+    <!-- Weeks Bar -->
+    <div class="weeks-bar">
+        <a href="../week1/week1.html" class="week1">Week 1</a>
+        <a href="../week2/week2.html" class="week2">Week 2</a>
+        <a href="../week3/week3.html" class="week3">Week 3</a>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <img src="../week2/images2/bubblesgif.gif" alt="Workshop Animation" class="gif-style" />
+        <p>Nothing to see here...</p>
+        <br>
+        <br>
+    </div>
+
+</body>
+</html>

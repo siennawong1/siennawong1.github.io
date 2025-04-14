@@ -16,18 +16,18 @@
         }
 
         .container {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center;
-    height: 100vh; 
-}
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+            height: 100vh; 
+        }
 
-.centered-gif {
-    width: 130px; 
-    height: auto;
-    margin-bottom: 100px; 
-}
+        .centered-gif {
+            width: 130px; 
+            height: auto;
+            margin-bottom: 100px; 
+        }
 
         /* Outer grid container  */
         .grid-container {
@@ -48,6 +48,21 @@
             justify-content: center;
             align-items: center;
             transition: transform 0.2s ease, background-color 0.2s ease; 
+        }
+
+        .label-container {
+            position: relative;
+        }
+
+        .label {
+            position: absolute;
+            top: 8px;
+            left: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            z-index: 2;
+            pointer-events: none;
         }
 
         /* Clickable Square */
@@ -73,6 +88,7 @@
             border-radius: 50%;
             width: 100%;
             height: 100%;
+            cursor: zoom-in;
         }
 
         .circle:hover {
@@ -82,11 +98,6 @@
         .circle:active {
             transform: scale(0.8); 
             background-color: greenyellow; 
-        }
-
-        
-        .circle {
-            cursor: zoom-in;
         }
 
         /* Triangle effect */
@@ -104,14 +115,11 @@
             border-bottom: 200px solid greenyellow;
             transition: transform 0.5s ease-in-out; 
             transform-style: preserve-3d; 
+            cursor: crosshair;
         }
 
         .triangle:hover {
             border-bottom-color: #ef3eab;
-        }
-
-        .triangle {
-            cursor: crosshair;
         }
 
         .triangle:active {
@@ -133,9 +141,6 @@
             box-sizing: border-box;
             width: 100%;
             height: 100%;
-        }
-
-        .text-box {
             cursor: not-allowed;
         }
     </style>
@@ -143,23 +148,26 @@
 <body>
     <!-- Container for GIF and Grid -->
     <div class="container">
-       
         <img src="windows.gif" alt="Animated GIF" class="centered-gif">
 
         <!-- Grid Container -->
         <div class="grid-container">
-            <a href="workbook/homepage/homepage.html" class="shape"> 
+            <a href="workbook/homepage/homepage.html" class="shape label-container"> 
                 <div class="square"></div>
+                <span class="label">2a</span>
             </a>
 
-            <div class="shape circle"></div>  
-            
-            <!-- Triangle with flip effect -->
-            <div class="shape triangle-container">
+            <div class="shape circle label-container">
+                <a href="workbook/2b/2b.html" class="shape label-container"></a>
+                <span class="label">2b</span>
+            </div>  
+
+            <div class="shape triangle-container label-container">
                 <div class="triangle"></div>
+                <span class="label">2c</span>
             </div>
 
-            <div class="text-box">To access the workbook, please click on the orange shape!</div> 
+            <div class="text-box">To access the workbooks, please click on the shapes!</div> 
         </div>
     </div>
 </body>
