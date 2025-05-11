@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Week 8</title>
+  <style>
+    iframe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      z-index: -1;
+    }
+
+    .text {
+      position: absolute;
+      font-family: sans-serif;
+      font-size: 24px;
+      color: #b34700; /* dark orange */
+      text-decoration: none;
+      z-index: 10; /* Ensure links stay on top */
+    }
+
+    .text:hover {
+      text-decoration: underline;
+      color: #b34700;
+    }
+
+    .research {
+      top: 30%;
+      left: 20%;
+    }
+
+    .workshop {
+      top: 48%;
+      left: 12%;
+    }
+
+    .process {
+      top: 56%;
+      left: 14%;
+    }
+
+    .corner-link {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 50px;
+      color: #bd5612;
+      text-decoration: none;
+      font-weight: bold;
+      font-family: sans-serif;
+      z-index: 11; /* Make sure the corner link is above everything else */
+    }
+
+    .corner-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Hidden by default */
+    .hover-text {
+      position: absolute;
+      font-family: sans-serif;
+      font-size: 100px;
+      color: rgb(255, 255, 255);
+      transform: rotate(90deg);
+      white-space: nowrap;
+      display: none;
+    }
+
+    /* Add styles for the collage effect */
+    .collage-text {
+      position: absolute;
+      font-family: sans-serif;
+      font-size: 24px;
+      color: darkgreen;
+      white-space: nowrap;
+      transform: rotate(0deg);
+      opacity: 0.7; /* Slightly reduced opacity */
+      z-index: 1; /* Ensure collage elements are behind the links */
+      transition: opacity 0.5s ease;
+    }
+
+    /* New styling for the text on the far right side */
+    .refresh-text {
+      position: absolute;
+      top: 53%;
+      right: 120px;
+      font-family: sans-serif;
+      font-size: 14px;
+      color: white;
+      transform: translateY(-50%);
+      z-index: 12; /* Make sure it stays on top */
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="../2c/2c.html" class="corner-link">8</a>
+
+  <a href="../week8research/week8re.html" class="text research">research</a>
+  <a href="../week8workshop/week8workshop.html" class="text workshop">workshop</a>
+  <a href="../week8process/week8process.html" class="text process">process</a>
+
+  <!-- Hover text containers -->
+  <div class="hover-text" id="hoverTextResearch">research</div>
+  <div class="hover-text" id="hoverTextWorkshop">workshop</div>
+  <div class="hover-text" id="hoverTextProcess">process</div>
+  
+  <iframe src="../p5-experiments/week8home/index.html">
+    Your browser does not support iframes.
+  </iframe>
+
+  <!-- Add the refresh text -->
+  <div class="refresh-text">Refresh the page <br> for new text layout!</div>
+
+  <script>
+    // Get elements for hover text
+    const researchText = document.querySelector('.research');
+    const hoverTextResearch = document.getElementById('hoverTextResearch');
+    const hoverTextWorkshop = document.getElementById('hoverTextWorkshop');
+    const hoverTextProcess = document.getElementById('hoverTextProcess');
+
+    // Add hover event to "research"
+    researchText.addEventListener('mouseenter', () => {
+      hoverTextResearch.style.display = 'block';
+      let repeatedText = '';
+      for (let i = 0; i < 5; i++) {
+        repeatedText += 'research<br>';
+      }
+      hoverTextResearch.innerHTML = repeatedText;
+    });
+
+    researchText.addEventListener('mouseleave', () => {
+      hoverTextResearch.style.display = 'none';
+    });
+
+    // Add hover event to "workshop"
+    const workshopText = document.querySelector('.workshop');
+    workshopText.addEventListener('mouseenter', () => {
+      hoverTextWorkshop.style.display = 'block';
+      let repeatedText = '';
+      for (let i = 0; i < 5; i++) {
+        repeatedText += 'workshop<br>';
+      }
+      hoverTextWorkshop.innerHTML = repeatedText;
+    });
+
+    workshopText.addEventListener('mouseleave', () => {
+      hoverTextWorkshop.style.display = 'none';
+    });
+
+    // Add hover event to "process"
+    const processText = document.querySelector('.process');
+    processText.addEventListener('mouseenter', () => {
+      hoverTextProcess.style.display = 'block';
+      let repeatedText = '';
+      for (let i = 0; i < 5; i++) {
+        repeatedText += 'process<br>';
+      }
+      hoverTextProcess.innerHTML = repeatedText;
+    });
+
+    processText.addEventListener('mouseleave', () => {
+      hoverTextProcess.style.display = 'none';
+    });
+
+    // Create the collage effect for "research", "workshop", and "process"
+    function createCollage() {
+      let collageContainer = document.createElement('div');
+      document.body.appendChild(collageContainer);
+
+      const words = ['research', 'workshop', 'process'];
+
+      for (let i = 0; i < 15; i++) {
+        let collageItem = document.createElement('div');
+        collageItem.classList.add('collage-text');
+
+        // Randomly select a word from the array
+        let word = words[Math.floor(Math.random() * words.length)];
+        collageItem.innerText = word;
+
+        // Randomize the position, rotation, and size
+        let x = Math.random() * window.innerWidth * 0.5 + 100; // Random horizontal position
+        let y = Math.random() * window.innerHeight; // Random vertical position
+        let rotation = (Math.random() - 0.5) * 30; // Random rotation (-15 to 15 degrees)
+        let size = Math.random() * 30 + 20; // Random size between 20px and 50px
+
+        collageItem.style.left = `${x}px`;
+        collageItem.style.top = `${y}px`;
+        collageItem.style.transform = `rotate(${rotation}deg)`;
+        collageItem.style.fontSize = `${size}px`;
+
+        // Set opacity
+        collageItem.style.opacity = 1;
+
+        collageContainer.appendChild(collageItem);
+      }
+    }
+
+    // Trigger the collage creation after page load
+    window.onload = createCollage;
+
+  </script>
+
+</body>
+</html>
