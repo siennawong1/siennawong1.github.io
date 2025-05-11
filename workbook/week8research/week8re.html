@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Research Page</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #d8d1c5;
+      color: #b34700;
+      overflow: hidden;
+    }
+
+    .research {
+      position: absolute;
+      top: 130px;
+      left: 40px;
+      font-size: 36px;
+      font-weight: bold;
+      color: #b34700;
+    }
+
+    .top-link {
+      margin-top: 130px;
+      font-size: 18px;
+      color: #b34700;
+      text-decoration: none;
+      left: 30%; /* Moved 10% from the left to shift the link to the left */
+      position: absolute;
+    }
+
+    .top-link:hover {
+      text-decoration: underline;
+    }
+
+    .circle-link {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background-color: #b34700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .circle-link:hover {
+      background-color: #a03f00;
+    }
+
+    .image-container, .second-image-container {
+      position: absolute;
+    }
+
+    .image-container {
+      left: 450px;
+      top: 40px;
+      cursor: grab;
+    }
+
+    .second-image-container {
+      left: 100px;
+      top: 180px;
+      width: 300px;
+    }
+
+    .image-container img,
+    .second-image-container img {
+      width: 300px;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .second-image-container p {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #b34700;
+      line-height: 1.4;
+    }
+
+    .workbook-inspo {
+      position: absolute;
+      top: 380px;
+      right: 310px;
+      font-size: 50px;
+      font-weight: bold;
+      color: #b34700;
+    }
+
+    .bottom-text {
+      position: absolute;
+      bottom: 55px;
+      left: 85%;
+      transform: translateX(-50%);
+      width: 400px;
+      font-size: 14px;
+      color: #b34700;
+      text-align: left;
+      line-height: 1.5;
+    }
+
+    .bottom-text a {
+      color: #b34700;
+      text-decoration: underline;
+    }
+
+    .bottom-text a:hover {
+      color: #a03f00;
+    }
+
+    /* 3D carousel styles */
+    .carousel-wrapper {
+      position: absolute;
+      top: 420px;
+      right: 250px;
+      width: 300px;
+      height: 300px;
+      perspective: 1000px;
+      overflow: visible;
+    }
+
+    .carousel {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotate 20s linear infinite;
+      transform-origin: center center;
+    }
+
+    .carousel img {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      border: none;
+      border-radius: 0;
+      left: 50%;
+      top: 50%;
+      transform-origin: center center;
+      margin: -40px 0 0 -40px;
+    }
+
+    .carousel img:nth-child(1) { transform: rotateY(0deg) translateZ(130px); }
+    .carousel img:nth-child(2) { transform: rotateY(90deg) translateZ(130px); }
+    .carousel img:nth-child(3) { transform: rotateY(180deg) translateZ(130px); }
+    .carousel img:nth-child(4) { transform: rotateY(270deg) translateZ(130px); }
+
+    @keyframes rotate {
+      from { transform: rotateY(0deg); }
+      to { transform: rotateY(360deg); }
+    }
+
+    .chindogu {
+      position: absolute;
+      font-size: 12px;
+      color: #b34700;
+      animation: fadeWiggle 3s ease-in-out forwards;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    @keyframes fadeWiggle {
+      0% {
+        opacity: 0;
+        transform: translate(0, 0) rotate(0deg);
+      }
+      50% {
+        opacity: 1;
+        transform: translate(3px, -3px) rotate(5deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-3px, 3px) rotate(-5deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Left-side text -->
+  <div class="research">research</div>
+
+  <!-- Right-side text -->
+  <div class="workbook-inspo">workbook <br> &nbsp; &nbsp; &nbsp; inspiration</div>
+
+  <!-- Rotating images -->
+  <div class="carousel-wrapper">
+    <div class="carousel">
+      <img src="./w8imges/w8greentext.png" alt="img1">
+      <img src="./w8imges/w8circlegradient.png" alt="img2">
+      <img src="./w8imges/w8rcollage.png" alt="img3">
+      <img src="./w8imges/w8researchdave.png" alt="img4">
+    </div>
+  </div>
+
+  <!-- Top center link -->
+  <a href="https://www.amusingplanet.com/2018/10/chindogu-japanese-art-of-unuseless.html" target="_blank" class="top-link">chindogu inspo here!</a>
+
+  <!-- Circle navigation button -->
+  <a href="../week8/week8.html" class="circle-link"></a>
+
+  <!-- Draggable image -->
+  <div class="image-container" id="draggable">
+    <img src="./w8imges/w8bby.png" alt="Small Image">
+  </div>
+
+  <!-- Static image + caption -->
+  <div class="second-image-container" id="trigger-image">
+    <img src="./w8imges/w8noodle.png" alt="Second Image">
+    <p>
+      It's good to think about how inventions can also solve everyday problems, improve daily life, 
+      or simply exist for entertainment. <br>
+      If I could make my dog some kind of cleaner too like the baby, that would be great. <br><br>
+      (tip: hover over the noodles image <br>on and off quickly <br> &nbsp; and drag the baby...)
+    </p>
+  </div>
+
+  <div class="bottom-text">
+    Most of my workbook inspiration has come from random photos on 
+    <strong>Pinterest</strong>, but I also looked at the artist 
+    <a href="https://www.davidcarsondesign.com/" target="_blank">David Carson</a> 
+    who creates interesting artworks that combine image and text and overlays them together, 
+    often in bunches and using negative space. I think my style is similar to his.
+  </div>
+
+  <script>
+    const dragEl = document.getElementById('draggable');
+    let isDragging = false, offsetX, offsetY;
+
+    dragEl.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      offsetX = e.clientX - dragEl.offsetLeft;
+      offsetY = e.clientY - dragEl.offsetTop;
+      dragEl.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        dragEl.style.left = `${e.clientX - offsetX}px`;
+        dragEl.style.top = `${e.clientY - offsetY}px`;
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      dragEl.style.cursor = 'grab';
+    });
+
+    const triggerImage = document.getElementById('trigger-image');
+    triggerImage.addEventListener('mouseenter', () => {
+      for (let i = 0; i < 20; i++) {
+        const span = document.createElement('span');
+        span.textContent = 'chindogu';
+        span.className = 'chindogu';
+        span.style.left = `${Math.random() * window.innerWidth}px`;
+        span.style.top = `${Math.random() * window.innerHeight}px`;
+        document.body.appendChild(span);
+        setTimeout(() => span.remove(), 3000);
+      }
+    });
+  </script>
+
+</body>
+</html>
