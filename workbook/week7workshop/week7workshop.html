@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Workshop</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f5f0e1;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      color: #2a4b32; /* Lighter green */
+    }
+
+    .rotating-text {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 48px;
+      color: #2a4b32; /* Lighter green */
+      animation: spin-backwards 5s linear infinite;
+    }
+
+    .rotating-caption {
+      position: absolute;
+      top: 480px; /* Positioned below the magnifier container */
+      left: 200px;
+      width: 500px;
+      text-align: center;
+      font-size: 28px;
+      color: #2a4b32; /* Lighter green */
+      animation: spin-backwards 5s linear infinite;
+    }
+
+    /* Updated return-link styles for the circle */
+    .return-link {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 30px; /* Size of the circle */
+      height: 20px; /* Size of the circle */
+      background-color: #2a4b32; /* Dark green */
+      border-radius: 50%; /* Makes it a circle */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    /* Optional hover effect */
+    .return-link:hover {
+      background-color: #1c3b28; /* Darker green */
+    }
+
+    @keyframes spin-backwards {
+      0% { transform: translateX(-50%) rotateY(0deg); }
+      100% { transform: translateX(-50%) rotateY(-360deg); }
+    }
+
+    .left-image,
+    .right-image {
+      position: absolute;
+      top: 300px;
+      width: 100px;
+      height: auto;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease;
+    }
+
+    .left-image {
+      left: 80px;
+    }
+
+    .left-image:hover {
+      transform: translateY(-50%) scale(2.5);
+      z-index: 1;
+    }
+
+    .right-image {
+      right: 20px;
+      top: 50%;
+    }
+
+    .magnifier-container {
+      position: absolute;
+      left: 200px;
+      top: 300px;
+      transform: translateY(-50%);
+      width: 500px;
+    }
+
+    .left-image-2 {
+      width: 100%;
+      display: block;
+    }
+
+    .magnifier-glass {
+      position: absolute;
+       /* Lighter green */
+      border-radius: 70%;
+      cursor: none;
+      width: 170px;
+      height: 170px;
+      visibility: hidden;
+      pointer-events: none;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 2000px; /* Increased zoom for more magnification */
+      z-index: 2;
+    }
+
+    .right-gif {
+      position: fixed;
+      bottom: 60px;
+      right: 90px;
+      width: 300px;
+      height: auto;
+      z-index: 10;
+    }
+
+    .rotating-title {
+      position: fixed;
+      bottom: 550px; /* Positioned above the GIF */
+      right: 90px;
+      font-size: 26px;
+      color: #2a4b32; /* Lighter green */
+      text-align: center;
+      animation: spin-backwards 5s linear infinite;
+    }
+
+    /* New small image to the left of the GIF */
+    .left-of-gif {
+      position: fixed;
+      bottom: 80px;
+      right: 410px; /* Adjusted to place it to the left of the GIF */
+      width: 200px; /* Small image size */
+      height: auto;
+      z-index: 11;
+    }
+
+    /* Text that will appear on hover */
+    .buzzer-text {
+      position: fixed;
+      bottom: 150px; /* Adjust as needed */
+      right: 550px;
+      font-size: 204px;
+      color: #ff6f00; /* Lighter green */
+      display: none; /* Hidden by default */
+      z-index: 12;
+    }
+
+    /* Show text when hovering over the left-of-gif image */
+    .left-of-gif:hover + .buzzer-text {
+      display: block;
+    }
+
+    /* Vibration animation */
+    @keyframes vibrate {
+      0% { transform: translateX(0); }
+      20% { transform: translateX(-5px); }
+      40% { transform: translateX(5px); }
+      60% { transform: translateX(-5px); }
+      80% { transform: translateX(5px); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Make the buzzer text vibrate on hover */
+    .buzzer-text:hover {
+      animation: vibrate 0.3s ease-in-out infinite;
+    }
+
+    /* Small text in bottom left corner */
+    .bottom-left-text {
+      position: absolute;
+      bottom: 50px;
+      left: 50px;
+      font-size: 16px;
+      color: #2a4b32; /* Lighter green */
+      max-width: 80%; /* Ensures text doesn't overflow */
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="../week7/week7.html" class="return-link"></a> <!-- The return link is now a dark green circle with an arrow -->
+
+  <div class="rotating-text">workshop</div>
+
+  <img src="./w7wimages/week7worshop1.png" alt="Left Image 1" class="left-image">
+  
+  <div class="magnifier-container">
+    <img src="./w7wimages/week7worshop.jpg" alt="Left Image 2" class="left-image-2" id="zoom-img">
+    <div class="magnifier-glass" id="magnifier"></div>
+  </div>
+
+  <div class="rotating-caption">WOT'S IN THE BOX?</div>
+
+  <div class="rotating-title">BLINK BUZZ VROOM</div>
+
+  <img src="./w7wimages/w7workshopgif.gif" alt="Animated GIF" class="right-gif">
+
+  <img src="./w7wimages/w7wkbuzzer.png" alt="Small Image" class="left-of-gif">
+
+  <div class="buzzer-text"> &nbsp; &nbsp;buzzer <br>&nbsp;&nbsp;<br> buzzer &nbsp; buzzer</div>
+
+  <div class="bottom-left-text">
+    This was my first time in the Telsta Creative Space and the first 
+    <br> time I have made a circuit... everything looked very intimidating. 
+   <br> I made a buzzer circuit and single light circuit, but failed to make 
+   <br> a two light circuit! (tip: hover over the buzzer image)
+  </div>
+
+  <script>
+    const img = document.getElementById('zoom-img');
+    const glass = document.getElementById('magnifier');
+
+    img.addEventListener('mousemove', moveMagnifier);
+    img.addEventListener('mouseenter', () => glass.style.visibility = 'visible');
+    img.addEventListener('mouseleave', () => glass.style.visibility = 'hidden');
+
+    function moveMagnifier(e) {
+      const rect = img.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const zoom = 4;
+      glass.style.left = `${x - glass.offsetWidth / 1 + rect.left}px`;
+      glass.style.top = `${y - glass.offsetHeight / 1 + rect.top}px`;
+
+      glass.style.backgroundImage = `url('${img.src}')`;
+      glass.style.backgroundSize = `${img.width * zoom}px ${img.height * zoom}px`;
+      glass.style.backgroundPosition = `-${x * zoom - glass.offsetWidth / 2}px -${y * zoom - glass.offsetHeight / 2}px`;
+    }
+  </script>
+
+</body>
+</html>
