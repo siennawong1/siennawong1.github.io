@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Process</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #cfc9bc; 
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+
+    .title {
+      position: absolute;
+      top: 300px;
+      right: 380px;
+      font-size: 60px;
+      font-weight: bold;
+      color: #cc5500; 
+      z-index: 2;
+    }
+
+    .circle-link {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      width: 30px;
+      height: 30px;
+      background-color: #cc5500; 
+      border-radius: 50%;
+      text-decoration: none;
+      display: block;
+    }
+
+   
+    .img1 {
+      position: absolute;
+      top: 200px;
+      left: 700px;
+      width: 300px;
+    }
+
+    .img2 {
+      position: absolute;
+      top: 350px;
+      left: 900px;
+      width: 420px;
+    }
+
+    .img3 {
+      position: absolute;
+      top: 602px;
+      left: 680px;
+      width: 340px;
+    }
+
+    .code-box {
+  position: absolute;
+  top: 300px; 
+  left: 1000px; 
+  width: 350px;
+  height: 800px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  overflow: auto;
+  padding: 10px;
+  font-family: monospace;
+  font-size: 12px;
+  white-space: pre;
+}
+
+.bottom-left-text {
+  position: absolute;
+  bottom: 650px;
+  left: 1000px;
+  width: 400px;
+  color: #cc5500; 
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.process-word {
+  position: absolute;
+  color: #cc5500; 
+  font-size: 24px;
+  font-weight: bold;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.hover-tip {
+  position: absolute;
+  top: 170px;
+  right: 600px;
+  font-size: 12px;
+  color: #cc5500; 
+  z-index: 3;
+}
+
+  </style>
+</head>
+<body>
+
+    
+<div class="code-box">
+    <code>
+    The code for the week 9 homepage:
+<br> <br> <br> <br> <br> <br> <br> <br> 
+<br> <br> <br> <br> <br> <br> <br> <br> <br> 
+    The code for the week 9 homepage:
+    (the co-ordinates line)
+
+    let anchorX, anchorY;
+    let startTime;
+    
+    function setup() {
+      createCanvas(windowWidth, windowHeight);
+      anchorX = width - 200;
+      anchorY = height - 200;
+      startTime = millis();
+    }
+    
+    function draw() {
+      background(210, 200, 190); 
+      const green = color(0, 100, 0);
+    
+      fill(green);
+      noStroke();
+      ellipse(anchorX, anchorY, 20, 20);
+      ellipse(mouseX, mouseY, 10, 10);
+    
+      stroke(green);
+      strokeWeight(1.5);
+      line(anchorX, anchorY, mouseX, mouseY);
+    
+      let coords = `(${mouseX}, ${mouseY})`;
+      let angleRad = atan2(mouseY - anchorY, mouseX - anchorX);
+      let angleDeg = degrees(angleRad).toFixed(1);
+      let elapsed = ((millis() - startTime) / 1000).toFixed(1);
+      let info = `${coords} | ${angleDeg}° | ${elapsed}s`;
+    
+      let displayAngle = angleRad;
+      if (cos(angleRad) < 0) displayAngle += PI;
+    
+      let offsetX = -15 * sin(angleRad);
+      let offsetY = 15 * cos(angleRad);
+    
+      push();
+      translate(mouseX + offsetX, mouseY + offsetY);
+      rotate(displayAngle);
+      fill(green);
+      noStroke();
+      textAlign(LEFT, CENTER);
+      textSize(14);
+      text(info, 10, 0);
+      pop();
+    }
+    </code>
+    </div>
+
+    
+<div class="bottom-left-text">
+    This week I focused on even more collage style, with many overlapping elements.  
+    I wanted to take the collage to it's limits while still being readable, although 
+    it may be more challenging to navigate. But I think this is what makes it more 
+    interactive in a way, like solving a visual puzzle with your eyes.
+  </div>
+
+  <div class="hover-tip">(tip: hover over the first image)</div>
+
+  
+  <a href="../week9/week9.html" class="circle-link"></a>
+
+  
+  <div class="title">process</div>
+
+  
+  <img src="./wk9imagesprocess/w9researchprocess.png" alt="Process Step 1" class="img1">
+  <img src="./wk9imagesprocess/w9workshopprocess.png" alt="Process Step 2" class="img2">
+  <img src="./wk9imagesprocess/week9coordinate.png" alt="Process Step 3" class="img3">
+  <script>
+    const img1 = document.querySelector('.img1');
+  
+    img1.addEventListener('mouseenter', () => {
+      for (let i = 0; i < 10; i++) {
+        const word = document.createElement('div');
+        word.className = 'process-word';
+        word.innerText = 'process';
+        word.style.top = `${Math.random() * window.innerHeight}px`;
+        word.style.left = `${Math.random() * window.innerWidth}px`;
+        document.body.appendChild(word);
+  
+        
+        setTimeout(() => word.remove(), 6000);
+      }
+    });
+  </script>
+</body>
+</html>
