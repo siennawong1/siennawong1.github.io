@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+
+  <script src="libraries/p5.min.js"></script>
+  <script src="libraries/p5.sound.min.js"></script>
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+
+    iframe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      z-index: -1;
+    }
+
+    
+    .research-text {
+      position: absolute;
+      top: 600px;
+      left: 30px;
+      font-size: 70px;  
+      font-weight: bold; 
+      color: #006400;  
+      z-index: 2;
+    }
+
+    
+    .workshop-text {
+      position: absolute;
+      bottom: 231px;
+      left: 88.5px;
+      font-size: 70px;  
+      font-weight: bold; 
+      color: #006400;  
+      z-index: 2;
+    }
+
+    
+    .process-text {
+      position: absolute;
+      bottom: 120px;
+      left: 300px;
+      font-size: 100px;  
+      font-weight: bold; 
+      color: #006400; 
+      z-index: 2;
+    }
+
+    
+    a {
+      font-size: 70px;  
+      font-weight: bold; 
+      color: #006400;  
+      text-decoration: none;  
+      z-index: 2;
+    }
+
+    
+    a:hover {
+      color: #ffffff; 
+    }
+
+    .return-link {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      font-size: 70px;
+      color: #006400;
+      text-decoration: none;
+      transition: 0.3s;
+      z-index: 3;
+    }
+
+    .return-link:hover {
+      color: #fcfefc;
+      animation: spin 2s linear infinite, glow 0.5s ease-in-out infinite, vibrate 0.1s ease-in-out infinite;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  
+  <div class="research-text">
+    <a href="../week9research/week9research.html">research</a>
+  </div>
+
+  
+  <div class="workshop-text">
+    <a href="../week9workshop/week9workshop.html">workshop</a>
+  </div>
+
+  
+  <div class="process-text">
+    <a href="../week9process/week9process.html">process</a>
+  </div>
+
+  <a class="return-link" href="../2c/2c.html">9</a>
+
+  <iframe src="../p5-experiments/week9home/index.html">
+    Your browser does not support iframes.
+  </iframe>
+
+</body>
+</html>
