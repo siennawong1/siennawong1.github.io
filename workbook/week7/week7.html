@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+
+  <script src="libraries/p5.min.js"></script>
+  <script src="libraries/p5.sound.min.js"></script>
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+
+    iframe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      z-index: -1;
+    }
+
+    .nav-link {
+      position: absolute;
+      font-size: 36px;
+      color: #006400;
+      text-decoration: none;
+      transition: 0.3s;
+      text-shadow: none;
+      z-index: 2;
+    }
+
+    .nav-link:hover {
+      animation: glow 0.5s ease-in-out infinite, vibrate 0.1s ease-in-out infinite;
+      color: #ffffff;
+      text-shadow:
+        0 0 5px #006400,
+        0 0 10px #006400,
+        0 0 20px #006400,
+        0 0 30px #006400;
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #006400, 0 0 10px #006400; }
+      50% { text-shadow: 0 0 20px #006400, 0 0 30px #006400; }
+      100% { text-shadow: 0 0 5px #006400, 0 0 10px #006400; }
+    }
+
+    @keyframes vibrate {
+      0% { transform: translate(0); }
+      50% { transform: translate(-2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .return-link {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      font-size: 70px;
+      color: #006400;
+      text-decoration: none;
+      transition: 0.3s;
+      z-index: 3;
+    }
+
+    .return-link:hover {
+      color: #fcfefc;
+      animation: spin 2s linear infinite, glow 0.5s ease-in-out infinite, vibrate 0.1s ease-in-out infinite;
+    }
+
+    .big-letter {
+      position: absolute;
+      bottom: 300px;
+      right: 340px;
+      font-size: 300px;
+      color: rgb(255, 185, 100);
+      font-family: 'Helvetica Neue', sans-serif;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .tiny-7, .tiny-o {
+      position: absolute;
+      font-size: 20px;
+      color: #006400;
+      font-family: 'Helvetica Neue', sans-serif;
+      pointer-events: none;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Rotating navigation links -->
+  <a id="research" class="nav-link" href="../week7research/week7research.html">research</a>
+  <a id="worshop" class="nav-link" href="../week7workshop/week7workshop.html">workshop</a>
+  <a id="process" class="nav-link" href="../week7process/week7process.html">process</a>
+
+  <!-- Small 7s -->
+  <div class="tiny-7" id="tiny7-1">7</div>
+  <div class="tiny-7" id="tiny7-2">7</div>
+  <div class="tiny-7" id="tiny7-3">7</div>
+  <div class="tiny-7" id="tiny7-4">7</div>
+  <div class="tiny-7" id="tiny7-5">7</div>
+  <div class="tiny-7" id="tiny7-6">7</div>
+
+  <!-- Small Os -->
+  <div class="tiny-o" id="tinyO-1">O</div>
+  <div class="tiny-o" id="tinyO-2">O</div>
+  <div class="tiny-o" id="tinyO-3">O</div>
+  <div class="tiny-o" id="tinyO-4">O</div>
+
+  <a class="return-link" href="../2c/2c.html">7</a>
+
+  <iframe src="../p5-experiments/week7land/index.html">
+    Your browser does not support iframes.
+  </iframe>
+
+  <script>
+    const links = [
+      { el: document.getElementById('research'), angleOffset: 0 },
+      { el: document.getElementById('worshop'), angleOffset: 120 },
+      { el: document.getElementById('process'), angleOffset: 240 }
+    ];
+
+    const tiny7s = [
+      { el: document.getElementById('tiny7-1'), angleOffset: Math.random() * 360, orbit: 100 },
+      { el: document.getElementById('tiny7-2'), angleOffset: Math.random() * 360, orbit: 130 },
+      { el: document.getElementById('tiny7-3'), angleOffset: Math.random() * 360, orbit: 160 },
+      { el: document.getElementById('tiny7-4'), angleOffset: Math.random() * 360, orbit: 180 },
+      { el: document.getElementById('tiny7-5'), angleOffset: Math.random() * 360, orbit: 200 },
+      { el: document.getElementById('tiny7-6'), angleOffset: Math.random() * 360, orbit: 220 }
+    ];
+
+    const tinyOs = [
+      { el: document.getElementById('tinyO-1'), angleOffset: Math.random() * 360, orbit: 115 },
+      { el: document.getElementById('tinyO-2'), angleOffset: Math.random() * 360, orbit: 145 },
+      { el: document.getElementById('tinyO-3'), angleOffset: Math.random() * 360, orbit: 175 },
+      { el: document.getElementById('tinyO-4'), angleOffset: Math.random() * 360, orbit: 205 }
+    ];
+
+    let angle = 0;
+    const radius = 150;
+    const centerX = 200;
+    const centerY = window.innerHeight / 2;
+
+    links.forEach(link => {
+      link.el.addEventListener('mouseenter', () => { angle = 0; });
+      link.el.addEventListener('mouseleave', () => { angle = 0.01; });
+    });
+
+    function animateLinks() {
+      angle += 0.01;
+
+      links.forEach(link => {
+        const a = angle + (link.angleOffset * Math.PI / 180);
+        const x = centerX + radius * Math.cos(a);
+        const y = centerY + radius * Math.sin(a);
+        link.el.style.left = `${x}px`;
+        link.el.style.top = `${y}px`;
+      });
+
+      tiny7s.forEach(t7 => {
+        const a = angle + (t7.angleOffset * Math.PI / 180);
+        const x = centerX + t7.orbit * Math.cos(a);
+        const y = centerY + t7.orbit * Math.sin(a);
+        t7.el.style.left = `${x}px`;
+        t7.el.style.top = `${y}px`;
+      });
+
+      tinyOs.forEach(o => {
+        const a = angle + (o.angleOffset * Math.PI / 180);
+        const x = centerX + o.orbit * Math.cos(a);
+        const y = centerY + o.orbit * Math.sin(a);
+        o.el.style.left = `${x}px`;
+        o.el.style.top = `${y}px`;
+      });
+
+      requestAnimationFrame(animateLinks);
+    }
+
+    animateLinks();
+  </script>
+
+</body>
+</html>
